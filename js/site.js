@@ -2,14 +2,25 @@
   const root = document.documentElement.dataset.root || ".";
   const p = (path) => `${root}/${path}`.replace(/\/{2,}/g, "/");
 
+  const hideLoader = () => {
+    document.documentElement.classList.add("is-hiding-loader");
+    window.setTimeout(() => {
+      document.documentElement.classList.add("is-ready");
+      document.documentElement.classList.remove("is-hiding-loader");
+    }, 1000);
+  };
+  const startLoader = () => window.setTimeout(hideLoader, 1000);
+  if (document.readyState === "complete") startLoader();
+  else window.addEventListener("load", startLoader);
+
   const header = `
     <header class="site-header">
       <div class="header-inner">
         <a class="logo" href="${p("index.html")}">
-          <img src="${p("assets/crest.svg")}" alt="社紋">
+          <img src="${p("assets/crest.png")}" alt="社紋 亀甲に大">
           <span class="logo-text">
-            <small>IZUMO TAISHA SAITAMA</small>
-            <strong>出雲大社埼玉分院</strong>
+            <small>IZUMO TAISHA SANUKI</small>
+            <strong>出雲大社讃岐分院</strong>
           </span>
         </a>
         <button class="menu-btn" type="button" aria-label="メニュー">
@@ -20,44 +31,29 @@
     <nav class="nav-overlay" aria-label="サイトメニュー">
       <div class="nav-grid">
         <div class="nav-col">
-          <h3>祈祷</h3>
-          <a href="${p("kitou/index.html")}">祈祷</a>
-          <a href="${p("reservation/index.html")}">祈祷のご予約フォーム</a>
-          <a href="${p("enmusubi/index.html")}">縁むすび</a>
-          <a href="${p("shichigosan/index.html")}">七五三詣</a>
-          <a href="${p("girei/index.html")}">人生儀礼</a>
-          <a href="${p("hatsumode/index.html")}">新年初祈祷</a>
-        </div>
-        <div class="nav-col">
-          <h3>出張祭典</h3>
-          <a href="${p("shucchou/index.html")}">出張祭典</a>
-          <a href="${p("izumoyashiki/index.html")}">出雲屋敷</a>
-          <a href="${p("shucchou-form/index.html")}">出張祭典のご予約フォーム</a>
-          <h3>授与品</h3>
-          <a href="${p("omamori/index.html")}">お守り・縁起物・おみくじ</a>
-          <a href="${p("goshuin/index.html")}">御朱印</a>
-        </div>
-        <div class="nav-col">
-          <h3>年間の祈り</h3>
-          <a href="${p("otakiage/index.html")}">お焚き上げ</a>
-          <a href="${p("oharae/index.html")}">大祓人形</a>
-          <a href="${p("jinzaimode/index.html")}">神在詣</a>
-          <a href="${p("usagi/index.html")}">うさぎ縁むすび祭</a>
-          <a href="${p("calendar/index.html")}">年間行事</a>
-          <a href="${p("yakudoshi/index.html")}">厄年・赤口詣・戌の日</a>
-        </div>
-        <div class="nav-col">
           <h3>当おやしろ</h3>
-          <a href="${p("faith/index.html")}">出雲大社の信仰</a>
-          <a href="${p("ryujashin/index.html")}">龍蛇神プロジェクト</a>
+          <a href="${p("deities/index.html")}">御祭神</a>
+          <a href="${p("about/index.html")}">分院について</a>
+          <a href="${p("izumo/index.html")}">出雲大社について</a>
+          <a href="${p("precinct/index.html")}">境内のご案内</a>
+        </div>
+        <div class="nav-col">
+          <h3>ご祈祷・授与</h3>
+          <a href="${p("kitou/index.html")}">ご祈祷</a>
+          <a href="${p("reservation/index.html")}">ご予約フォーム</a>
+          <a href="${p("izumoyashiki/index.html")}">出雲屋敷</a>
+          <a href="${p("omamori/index.html")}">お守り・縁起物・おみくじ</a>
+        </div>
+        <div class="nav-col">
+          <h3>お知らせ</h3>
           <a href="${p("news/index.html")}">お知らせ</a>
-          <a href="${p("recruit/index.html")}">採用情報</a>
-          <a href="${p("media/index.html")}">メディアの方へ</a>
+          <a href="${p("calendar/index.html")}">年間スケジュール</a>
+        </div>
+        <div class="nav-col">
+          <h3>ご案内</h3>
           <a href="${p("access/index.html")}">交通アクセス</a>
           <a href="${p("contact/index.html")}">お問い合わせ</a>
-          <a href="${p("faq/index.html")}">よくある質問</a>
           <a href="${p("privacy/index.html")}">プライバシーポリシー</a>
-          <a href="${p("yahashira/index.html")}">出雲大社埼玉分院 八柱支部</a>
         </div>
       </div>
     </nav>
@@ -67,52 +63,39 @@
     <footer class="site-footer">
       <div class="footer-inner">
         <div class="footer-info">
-          <h2>出雲大社埼玉分院</h2>
-          <p>〒351-0011 埼玉県朝霞市本町2-20-18</p>
-          <p>TEL：048-463-3720　FAX：048-463-3723</p>
-          <p>MAIL：info@izumotaisha-saitama.com</p>
-          <p>開門時間：8:30－17:00（年中無休）　受付時間：9:00－17:00</p>
+          <h2>出雲大社讃岐分院</h2>
+          <p>〒769-1501 香川県三豊市豊中町比地大3142</p>
+          <p>TEL：0875-62-2008</p>
+          <p>受付時間：9:00－17:00</p>
         </div>
         <div class="footer-nav">
           <div>
-            <h3>祈祷</h3>
-            <a href="${p("kitou/index.html")}">祈祷</a>
-            <a href="${p("reservation/index.html")}">祈祷のご予約フォーム</a>
-            <a href="${p("enmusubi/index.html")}">縁むすび</a>
-            <a href="${p("shichigosan/index.html")}">七五三詣</a>
-            <a href="${p("girei/index.html")}">人生儀礼</a>
-            <a href="${p("hatsumode/index.html")}">新年初祈祷</a>
+            <h3>当おやしろ</h3>
+            <a href="${p("deities/index.html")}">御祭神</a>
+            <a href="${p("about/index.html")}">分院について</a>
+            <a href="${p("precinct/index.html")}">境内のご案内</a>
+            <a href="${p("izumo/index.html")}">出雲大社について</a>
           </div>
           <div>
-            <h3>出張祭典・授与品</h3>
-            <a href="${p("shucchou/index.html")}">出張祭典</a>
+            <h3>ご祈祷・授与</h3>
+            <a href="${p("kitou/index.html")}">ご祈祷</a>
+            <a href="${p("reservation/index.html")}">ご予約フォーム</a>
             <a href="${p("izumoyashiki/index.html")}">出雲屋敷</a>
             <a href="${p("omamori/index.html")}">お守り・縁起物・おみくじ</a>
-            <a href="${p("goshuin/index.html")}">御朱印</a>
-            <a href="${p("otakiage/index.html")}">お焚き上げ</a>
-            <a href="${p("oharae/index.html")}">大祓人形</a>
           </div>
           <div>
-            <h3>信仰・行事</h3>
-            <a href="${p("faith/index.html")}">出雲大社の信仰</a>
-            <a href="${p("ryujashin/index.html")}">龍蛇神プロジェクト</a>
-            <a href="${p("jinzaimode/index.html")}">神在詣</a>
-            <a href="${p("usagi/index.html")}">うさぎ縁むすび祭</a>
-            <a href="${p("calendar/index.html")}">年間行事</a>
-            <a href="${p("yakudoshi/index.html")}">厄年・赤口詣・戌の日</a>
+            <h3>お知らせ</h3>
+            <a href="${p("news/index.html")}">お知らせ</a>
+            <a href="${p("calendar/index.html")}">年間スケジュール</a>
           </div>
           <div>
             <h3>ご案内</h3>
-            <a href="${p("news/index.html")}">お知らせ</a>
             <a href="${p("access/index.html")}">交通アクセス</a>
             <a href="${p("contact/index.html")}">お問い合わせ</a>
-            <a href="${p("faq/index.html")}">よくある質問</a>
-            <a href="${p("recruit/index.html")}">採用情報</a>
             <a href="${p("privacy/index.html")}">プライバシーポリシー</a>
-            <a href="${p("yahashira/index.html")}">八柱支部</a>
           </div>
         </div>
-        <p class="copy">© Izumo Taisha Saitama Branch</p>
+        <p class="copy">© Izumo Taisha Sanuki Branch</p>
       </div>
     </footer>
     <button class="to-top" type="button" aria-label="ページ上部へ">↑</button>
@@ -121,47 +104,17 @@
   document.body.insertAdjacentHTML("afterbegin", header);
   document.body.insertAdjacentHTML("beforeend", footer);
 
-  const menuBtn = document.querySelector(".menu-btn");
-  menuBtn.addEventListener("click", () => {
+  document.querySelector(".menu-btn").addEventListener("click", () => {
     document.body.classList.toggle("nav-open");
   });
   document.querySelector(".to-top").addEventListener("click", () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   });
 
-  const shakko = {
-    1: [2, 8, 14, 19, 25, 31],
-    2: [6, 12, 22, 28],
-    3: [6, 12, 18, 23, 29],
-    4: [4, 10, 16, 20, 26],
-    5: [2, 8, 14, 19, 25, 31],
-    6: [6, 12, 16, 22, 28],
-    7: [4, 10, 14, 20, 26],
-    8: [1, 7, 18, 24, 30],
-    9: [5, 15, 21, 27],
-    10: [3, 9, 14, 20, 26],
-    11: [1, 7, 11, 17, 23, 29],
-    12: [5, 10, 16, 22, 28],
-  };
-  const inu = {
-    1: [12, 24],
-    2: [5, 17],
-    3: [1, 13, 25],
-    4: [6, 18, 30],
-    5: [12, 24],
-    6: [5, 17, 29],
-    7: [11, 23],
-    8: [4, 16, 28],
-    9: [9, 21],
-    10: [3, 15, 27],
-    11: [8, 20],
-    12: [2, 14, 26],
-  };
-
   const calRoot = document.querySelector("[data-calendar]");
   if (calRoot) {
     let year = 2026;
-    let month = 8;
+    let month = 9;
     const title = calRoot.querySelector("[data-cal-title]");
     const body = calRoot.querySelector("[data-cal-body]");
     const render = () => {
@@ -172,14 +125,9 @@
       for (let i = 0; i < first; i += 1) html += "<td></td>";
       for (let d = 1; d <= days; d += 1) {
         const dow = (first + d - 1) % 7;
-        let cls = dow === 0 ? "sun" : "";
-        let inner = String(d);
-        if ((shakko[month] || []).includes(d)) {
-          inner = `<span class="shakko">${d}</span>`;
-        } else if ((inu[month] || []).includes(d)) {
-          inner = `<span class="inu">${d}</span>`;
-        }
-        html += `<td class="${cls}">${inner}</td>`;
+        const marked = d === 15 || d === 30;
+        const inner = marked ? `<span class="shakko">${d}</span>` : String(d);
+        html += `<td class="${dow === 0 ? "sun" : ""}">${inner}</td>`;
         if (dow === 6) html += "</tr><tr>";
       }
       html += "</tr>";
@@ -204,10 +152,31 @@
     render();
   }
 
+  const typeMap = {
+    enmusubi: "縁むすび",
+    jichinsai: "地鎮祭",
+    wedding: "神前結婚式",
+    toshikae: "年変年戻し",
+    iebarai: "家祓い",
+    izumoyashiki: "出雲屋敷",
+  };
+  const typeSelect = document.querySelector("select[name='type']");
+  if (typeSelect) {
+    const type = new URLSearchParams(location.search).get("type");
+    if (type && typeMap[type]) {
+      typeSelect.value = typeMap[type];
+      const banner = document.querySelector("[data-prefill-note]");
+      if (banner) {
+        banner.hidden = false;
+        banner.textContent = `「${typeMap[type]}」で申し込み内容を入れています。`;
+      }
+    }
+  }
+
   document.querySelectorAll("form[data-fake-submit]").forEach((form) => {
     form.addEventListener("submit", (event) => {
       event.preventDefault();
-      alert("デモサイトのため送信は行われません。後ほど実フォームへ差し替えできます。");
+      alert("デモのため送信は行われません。受け入れ態勢が整い次第、本番の予約につなげます。");
     });
   });
 })();

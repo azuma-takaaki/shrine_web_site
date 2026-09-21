@@ -1,8 +1,8 @@
 :root {
   --ink: #1c1c1c;
   --muted: #6a6560;
-  --red: #c0122a;
-  --red-dark: #9a0e22;
+  --red: #e94709;
+  --red-dark: #c13907;
   --paper: #fffdf9;
   --cream: #f6f1ea;
   --line: #e6dfd6;
@@ -21,6 +21,45 @@
 
 html {
   scroll-behavior: smooth;
+}
+
+html:not(.is-ready) {
+  overflow: hidden;
+}
+
+html:not(.is-ready)::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: #fff;
+  z-index: 100000;
+}
+
+html:not(.is-ready)::after {
+  content: "";
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 120px;
+  height: 120px;
+  transform: translate(-50%, -50%);
+  background: url("../assets/crest.png") center / contain no-repeat;
+  z-index: 100001;
+  animation: lp-fade 1s infinite;
+}
+
+html.is-hiding-loader::before,
+html.is-hiding-loader::after {
+  opacity: 0;
+  transition: opacity 1s ease;
+  pointer-events: none;
+  animation: none;
+}
+
+@keyframes lp-fade {
+  from { opacity: 1; }
+  50% { opacity: 0.5; }
+  to { opacity: 1; }
 }
 
 body {
@@ -77,8 +116,9 @@ textarea {
 }
 
 .logo img {
-  width: 42px;
-  height: 42px;
+  width: 52px;
+  height: 52px;
+  object-fit: contain;
 }
 
 .logo-text {
@@ -183,15 +223,112 @@ body.nav-open .nav-overlay {
   min-height: min(86vh, 820px);
   background:
     linear-gradient(180deg, rgba(20, 12, 10, 0.08), rgba(20, 12, 10, 0.42)),
-    url("https://images.unsplash.com/photo-1528164344705-47542687000d?auto=format&fit=crop&w=1800&q=80") center / cover no-repeat;
+    url("../assets/photos/gate.jpg") center / cover no-repeat;
   display: flex;
   align-items: flex-end;
 }
 
 .hero-copy {
   width: 100%;
-  padding: 0 40px 56px;
+  padding: 0 48px 80px;
   color: #fff;
+}
+
+.hero-actions {
+  position: absolute;
+  right: 40px;
+  bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 2;
+}
+
+.hero-actions .btn {
+  min-width: 168px;
+  background: rgba(233, 71, 9, 0.94);
+  border-color: transparent;
+  color: #fff;
+}
+
+.update-badge {
+  display: inline-block;
+  margin-bottom: 12px;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  color: var(--red);
+}
+
+.intro-guides {
+  background: var(--paper);
+  padding: 72px 0 88px;
+  display: grid;
+  gap: 40px;
+}
+
+.intro-pair {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  width: min(1200px, calc(100% - 48px));
+  margin: 0 auto;
+  min-height: 360px;
+  color: inherit;
+  background: var(--cream);
+}
+
+.intro-pair--flip {
+  grid-template-columns: 0.85fr 1.15fr;
+}
+
+.intro-pair--flip .intro-pair-photo {
+  order: 2;
+}
+
+.intro-pair-photo {
+  min-height: 320px;
+  background-size: cover;
+  background-position: center;
+}
+
+.intro-pair-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 48px 52px;
+}
+
+.intro-kicker {
+  margin: 0 0 12px;
+  font-size: 12px;
+  letter-spacing: 0.32em;
+  color: var(--red);
+}
+
+.intro-pair-text h2 {
+  margin: 0 0 14px;
+  font-family: var(--serif);
+  font-size: clamp(22px, 2.4vw, 32px);
+  font-weight: 500;
+  letter-spacing: 0.16em;
+}
+
+.intro-pair-text p:last-child {
+  margin: 0;
+  font-size: 14px;
+  line-height: 2;
+  color: var(--muted);
+}
+
+.intro-pair:hover .intro-pair-text h2 {
+  color: var(--red);
+}
+
+.prefill-note {
+  background: #fff3ec;
+  color: var(--red);
+  padding: 12px 16px;
+  margin-bottom: 16px;
+  font-size: 14px;
 }
 
 .hero-copy p {
@@ -252,11 +389,11 @@ body.nav-open .nav-overlay {
 }
 
 .enmusubi .bg {
-  background-image: url("https://images.unsplash.com/photo-1524413840807-0c3cb6fa808d?auto=format&fit=crop&w=1400&q=80");
+  background-image: url("../assets/photos/temizuya.jpg");
 }
 
 .otakiage .bg {
-  background-image: url("https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=1400&q=80");
+  background-image: url("../assets/photos/shimenawa.jpg");
 }
 
 .section {
@@ -418,7 +555,7 @@ body.nav-open .nav-overlay {
 .about-photo {
   background:
     linear-gradient(180deg, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.2)),
-    url("https://images.unsplash.com/photo-1545569341-9eb8b30979d9?auto=format&fit=crop&w=1600&q=80") center / cover no-repeat;
+    url("../assets/photos/haiden.jpg") center / cover no-repeat;
 }
 
 .about-text {
@@ -519,12 +656,12 @@ body.nav-open .nav-overlay {
   color: var(--muted);
 }
 
-.g1 { background-image: url("https://images.unsplash.com/photo-1601823984263-b87b5973226e?auto=format&fit=crop&w=900&q=80"); }
-.g2 { background-image: url("https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=900&q=80"); }
-.g3 { background-image: url("https://images.unsplash.com/photo-1528360983277-13d401cdc186?auto=format&fit=crop&w=900&q=80"); }
-.g4 { background-image: url("https://images.unsplash.com/photo-1478436127897-769e1b3f0f36?auto=format&fit=crop&w=900&q=80"); }
-.g5 { background-image: url("https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=900&q=80"); }
-.g6 { background-image: url("https://images.unsplash.com/photo-1480796927426-f609979314bd?auto=format&fit=crop&w=900&q=80"); }
+.g1 { background-image: url("../assets/photos/shimenawa.jpg"); }
+.g2 { background-image: url("../assets/photos/furin-omikuji.jpg"); }
+.g3 { background-image: url("../assets/photos/komainu.jpg"); }
+.g4 { background-image: url("../assets/photos/haiden.jpg"); }
+.g5 { background-image: url("../assets/photos/shide.jpg"); }
+.g6 { background-image: url("../assets/photos/gate.jpg"); }
 
 .branch {
   display: grid;
@@ -534,7 +671,7 @@ body.nav-open .nav-overlay {
 .branch-photo {
   min-height: 420px;
   background:
-    url("https://images.unsplash.com/photo-1624253321171-1be53e12f5f4?auto=format&fit=crop&w=1400&q=80") center / cover no-repeat;
+    url("../assets/photos/daikoku.jpg") center / cover no-repeat;
 }
 
 .branch-text {
@@ -632,7 +769,7 @@ body.nav-open .nav-overlay {
   align-items: flex-end;
   background:
     linear-gradient(180deg, rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.45)),
-    url("https://images.unsplash.com/photo-1528164344705-47542687000d?auto=format&fit=crop&w=1600&q=80") center / cover no-repeat;
+    url("../assets/photos/haiden.jpg") center / cover no-repeat;
   color: #fff;
 }
 
@@ -742,6 +879,45 @@ body.nav-open .nav-overlay {
   font-family: var(--serif);
 }
 
+.photo-block {
+  margin: 28px 0 36px;
+}
+
+.photo-block img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.photo-block figcaption,
+.photo-pair figcaption {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 8px;
+  letter-spacing: 0.08em;
+}
+
+.photo-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 24px 0 36px;
+}
+
+.photo-pair img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+}
+
+.product.has-photo {
+  min-height: 220px;
+  color: #fff;
+  background-size: cover;
+  background-position: center;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.45);
+}
+
 .form {
   display: grid;
   gap: 16px;
@@ -832,8 +1008,64 @@ body.nav-open .nav-overlay {
   .branch,
   .footer-nav,
   .card-grid,
-  .product-grid {
+  .product-grid,
+  .photo-pair {
     grid-template-columns: 1fr;
+  }
+
+  .hero {
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  .hero-copy {
+    padding: 0 20px 16px;
+  }
+
+  .hero-actions {
+    position: static;
+    flex-direction: row;
+    padding: 0 20px 24px;
+    align-self: stretch;
+  }
+
+  .hero-actions .btn {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .intro-guides {
+    padding: 48px 0 56px;
+    gap: 28px;
+  }
+
+  .intro-pair,
+  .intro-pair--flip {
+    grid-template-columns: 1fr;
+    width: calc(100% - 32px);
+    min-height: 0;
+  }
+
+  .intro-pair--flip .intro-pair-photo {
+    order: 0;
+  }
+
+  .intro-pair-photo {
+    min-height: 240px;
+  }
+
+  .intro-pair-text {
+    padding: 28px 24px 32px;
+  }
+
+  .about-block {
+    grid-template-columns: 1fr;
+    grid-template-rows: 240px auto;
+    min-height: 0;
+  }
+
+  .about-photo {
+    min-height: 240px;
   }
 
   .about-text,

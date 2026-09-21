@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ja" data-root="..">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>お問い合わせ | 出雲大社埼玉分院</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Noto+Serif+JP:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <main>
+    <div class="page-hero"><h1>お問い合わせ</h1></div>
+    <article class="content">
+      <p class="lead">個人情報保護に関する基本方針に同意の上、お問い合わせフォームにご入力下さい。メールにて確認のご返信をさせていただいておりますので、お間違いのないようお願い致します。3日程経っても返信がない場合は、お手数ではございますが、お電話にてお問い合わせ下さい。</p>
+      <form class="form" data-fake-submit>
+        <label><div><span>必須</span>お名前</div><input required name="name"></label>
+        <label><div><span>必須</span>ふりがな</div><input required name="kana"></label>
+        <label><div><span>必須</span>メールアドレス</div><input required type="email" name="email"></label>
+        <label><div><span>必須</span>お電話番号</div><input required name="tel"></label>
+        <label><div><span>必須</span>カテゴリー</div>
+          <select required name="category">
+            <option value="">—以下から選択してください—</option>
+            <option>祈祷について</option>
+            <option>お焚き上げについて</option>
+            <option>地鎮祭について</option>
+            <option>神葬祭・霊祭について</option>
+            <option>合葬墓について</option>
+            <option>出雲屋敷について</option>
+            <option>神饌講について</option>
+            <option>神語奉書について</option>
+            <option>採用について</option>
+            <option>その他のご質問</option>
+          </select>
+        </label>
+        <label><div><span>必須</span>お問い合わせ内容</div><textarea required name="message"></textarea></label>
+        <label style="grid-template-columns:auto 1fr; align-items:center;">
+          <input required type="checkbox">
+          <span style="color:#3a3734;">スパムメール防止のため、こちらのボックスにチェックを入れてから送信してください。</span>
+        </label>
+        <p class="form-note">docomo、au、softbankなど各キャリアのメールでドメイン指定受信を設定されている場合は、@izumotaisha-saitama.com を受信できるよう設定をお願い致します。</p>
+        <button class="btn btn-red" type="submit">送信する</button>
+      </form>
+    </article>
+  </main>
+  <script src="../js/site.js"></script>
+</body>
+</html>

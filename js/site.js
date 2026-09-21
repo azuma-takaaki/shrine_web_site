@@ -15,6 +15,12 @@
 
   const header = `
     <header class="site-header">
+      <div class="header-utility">
+        <a href="${p("omamori/index.html")}">お守り・縁起物・おみくじ</a>
+        <a href="${p("calendar/index.html")}">年間スケジュール</a>
+        <a href="${p("reservation/index.html")}">ご予約フォーム</a>
+        <a href="${p("access/index.html")}">交通アクセス</a>
+      </div>
       <div class="header-inner">
         <a class="logo" href="${p("index.html")}">
           <img src="${p("assets/crest.png")}" alt="社紋 亀甲に大">
@@ -23,7 +29,15 @@
             <strong>出雲大社讃岐分院</strong>
           </span>
         </a>
-        <button class="menu-btn" type="button" aria-label="メニュー">
+        <nav class="header-nav" aria-label="主要メニュー">
+          <a href="${p("deities/index.html")}">御祭神</a>
+          <a href="${p("kitou/index.html")}">ご祈祷</a>
+          <a href="${p("precinct/index.html")}">境内のご案内</a>
+          <a href="${p("izumoyashiki/index.html")}">出雲屋敷</a>
+          <a href="${p("news/index.html")}">お知らせ</a>
+          <a href="${p("contact/index.html")}">お問い合わせ</a>
+        </nav>
+        <button class="menu-btn" type="button" aria-label="メニュー" aria-expanded="false">
           <span></span><span></span><span></span>
         </button>
       </div>
@@ -95,8 +109,8 @@
             <a href="${p("privacy/index.html")}">プライバシーポリシー</a>
           </div>
         </div>
-        <p class="copy">© Izumo Taisha Sanuki Branch</p>
       </div>
+      <p class="copy">© Izumo Taisha Sanuki Branch</p>
     </footer>
     <button class="to-top" type="button" aria-label="ページ上部へ">↑</button>
   `;
@@ -104,8 +118,16 @@
   document.body.insertAdjacentHTML("afterbegin", header);
   document.body.insertAdjacentHTML("beforeend", footer);
 
-  document.querySelector(".menu-btn").addEventListener("click", () => {
-    document.body.classList.toggle("nav-open");
+  const menuBtn = document.querySelector(".menu-btn");
+  menuBtn.addEventListener("click", () => {
+    const open = document.body.classList.toggle("nav-open");
+    menuBtn.setAttribute("aria-expanded", open ? "true" : "false");
+  });
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 900 && document.body.classList.contains("nav-open")) {
+      document.body.classList.remove("nav-open");
+      menuBtn.setAttribute("aria-expanded", "false");
+    }
   });
   document.querySelector(".to-top").addEventListener("click", () => {
     window.scrollTo({ top: 0, behavior: "smooth" });

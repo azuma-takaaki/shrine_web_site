@@ -6,7 +6,7 @@
   --paper: #fffdf9;
   --cream: #f6f1ea;
   --line: #e6dfd6;
-  --footer: #1b1b1b;
+  --footer: #2a2622;
   --serif: "Noto Serif JP", "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", serif;
   --sans: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", sans-serif;
   --header-h: 84px;
@@ -99,11 +99,16 @@ textarea {
   border-bottom: 1px solid var(--line);
 }
 
+.header-utility,
+.header-nav {
+  display: none;
+}
+
 .header-inner {
-  max-width: 1280px;
+  width: 100%;
   height: 100%;
-  margin: 0 auto;
-  padding: 0 28px;
+  margin: 0;
+  padding: 0 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -113,12 +118,14 @@ textarea {
   display: flex;
   align-items: center;
   gap: 12px;
+  min-width: 0;
 }
 
 .logo img {
   width: 52px;
   height: 52px;
   object-fit: contain;
+  background: transparent;
 }
 
 .logo-text {
@@ -150,6 +157,7 @@ textarea {
   flex-direction: column;
   justify-content: center;
   gap: 6px;
+  flex-shrink: 0;
 }
 
 .menu-btn span {
@@ -216,6 +224,77 @@ body.nav-open .nav-overlay {
 
 .nav-col a:hover {
   color: var(--red);
+}
+
+@media (min-width: 901px) {
+  .site-header {
+    height: auto;
+  }
+
+  .header-utility {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 6px 32px;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .header-utility a {
+    padding: 0 12px;
+    border-left: 1px solid var(--line);
+  }
+
+  .header-utility a:first-child {
+    border-left: 0;
+    padding-left: 0;
+  }
+
+  .header-utility a:last-child {
+    padding-right: 0;
+  }
+
+  .header-utility a:hover {
+    color: var(--red);
+  }
+
+  .header-inner {
+    height: 80px;
+    padding: 0 32px;
+  }
+
+  .header-nav {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 8px 28px;
+    font-size: 14px;
+    letter-spacing: 0.1em;
+  }
+
+  .header-nav a:hover {
+    color: var(--red);
+  }
+
+  .menu-btn,
+  .nav-overlay {
+    display: none;
+  }
+}
+
+@media (min-width: 901px) and (max-width: 1180px) {
+  .header-nav {
+    gap: 8px 16px;
+    font-size: 13px;
+    letter-spacing: 0.06em;
+  }
+
+  .logo-text small {
+    display: none;
+  }
 }
 
 .hero {
@@ -553,15 +632,13 @@ body.nav-open .nav-overlay {
 }
 
 .about-photo {
-  background:
-    linear-gradient(180deg, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.2)),
-    url("../assets/photos/haiden.jpg") center / cover no-repeat;
+  background: url("../assets/photos/haiden.jpg") center / cover no-repeat;
 }
 
 .about-text {
-  background: #111;
-  color: #f6f1ea;
-  padding: 72px 56px;
+  background: var(--cream);
+  color: var(--ink);
+  padding: 64px 48px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -571,7 +648,7 @@ body.nav-open .nav-overlay {
   font-family: var(--serif);
   font-size: clamp(22px, 2.4vw, 32px);
   line-height: 1.7;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.08em;
   margin: 0 0 24px;
   font-weight: 500;
 }
@@ -580,7 +657,12 @@ body.nav-open .nav-overlay {
   margin: 0 0 32px;
   font-size: 14px;
   line-height: 2;
-  color: #ddd4c8;
+  color: var(--muted);
+}
+
+.about-text .intro-kicker {
+  margin: 0 0 12px;
+  color: var(--red);
 }
 
 .btn {
@@ -692,14 +774,17 @@ body.nav-open .nav-overlay {
 }
 
 .site-footer {
-  background: var(--footer);
-  color: #d8d2ca;
-  padding: 72px 28px 28px;
+  background:
+    linear-gradient(180deg, rgba(28, 22, 18, 0.62), rgba(18, 15, 12, 0.84)),
+    url("../assets/photos/shimenawa.jpg") center 42% / cover no-repeat;
+  color: #f7efe8;
+  padding: 72px 0 0;
 }
 
 .footer-inner {
   max-width: 1200px;
   margin: 0 auto;
+  padding: 0 28px 48px;
 }
 
 .footer-info h2 {
@@ -719,9 +804,9 @@ body.nav-open .nav-overlay {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 28px;
-  margin: 48px 0 40px;
+  margin: 48px 0 0;
   padding-top: 36px;
-  border-top: 1px solid #333;
+  border-top: 1px solid rgba(255, 255, 255, 0.22);
 }
 
 .footer-nav h3 {
@@ -736,18 +821,19 @@ body.nav-open .nav-overlay {
   display: block;
   font-size: 13px;
   padding: 4px 0;
-  color: #bdb6ae;
+  color: rgba(255, 247, 240, 0.82);
 }
 
 .footer-nav a:hover {
-  color: #fff;
+  color: var(--red);
 }
 
 .copy {
   font-size: 11px;
-  color: #8d8680;
-  border-top: 1px solid #333;
-  padding-top: 18px;
+  color: rgba(255, 247, 240, 0.58);
+  background: rgba(18, 16, 14, 0.82);
+  margin: 0;
+  padding: 16px 28px;
 }
 
 .to-top {

@@ -989,6 +989,15 @@ body.nav-open .nav-overlay {
   font-weight: 600;
 }
 
+.content h2 .h2-sub {
+  display: inline;
+  font-family: var(--sans);
+  font-size: 0.68em;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+
 .content h3 {
   font-family: var(--serif);
   font-size: 18px;
@@ -1130,6 +1139,48 @@ body.nav-open .nav-overlay {
   text-shadow: 0 1px 10px rgba(0, 0, 0, 0.45);
 }
 
+.omamori-page .product-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin: 16px 0 48px;
+}
+
+.omamori-page .product {
+  aspect-ratio: 3 / 4;
+  min-height: 0;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  gap: 6px;
+  padding: 20px 18px;
+  box-sizing: border-box;
+}
+
+.omamori-page .product-name {
+  font-family: var(--serif);
+  font-size: 16px;
+  letter-spacing: 0.1em;
+  line-height: 1.4;
+}
+
+.omamori-page .product-desc {
+  font-family: var(--sans);
+  font-size: 13px;
+  line-height: 1.7;
+  color: #4a4540;
+  letter-spacing: 0.02em;
+}
+
+.omamori-page .product.has-photo {
+  min-height: 0;
+  color: #fff;
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.4);
+}
+
+.omamori-page .product.has-photo .product-desc {
+  color: rgba(255, 247, 240, 0.88);
+}
+
 .form {
   display: grid;
   gap: 16px;
@@ -1249,6 +1300,23 @@ body.nav-open .nav-overlay {
   .photo-pair,
   .photo-trio {
     grid-template-columns: 1fr;
+  }
+
+  .omamori-page .product-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .omamori-page .product {
+    padding: 14px 12px;
+  }
+
+  .omamori-page .product-name {
+    font-size: 14px;
+  }
+
+  .omamori-page .product-desc {
+    font-size: 12px;
   }
 
   body {

@@ -40,7 +40,6 @@
           <a href="${p("omamori/index.html")}">お守り</a>
           <a href="${p("news/index.html")}">お知らせ</a>
           <a href="${p("access/index.html")}">アクセス</a>
-          <a href="${p("contact/index.html")}">お問い合わせ</a>
         </nav>
         <button class="menu-btn" type="button" aria-label="メニュー" aria-expanded="false">
           <span></span><span></span><span></span>
@@ -70,7 +69,6 @@
         <div class="nav-col">
           <h3>ご案内</h3>
           <a href="${p("access/index.html")}">交通アクセス</a>
-          <a href="${p("contact/index.html")}">お問い合わせ</a>
           <a href="${p("privacy/index.html")}">プライバシーポリシー</a>
         </div>
       </div>
@@ -108,7 +106,6 @@
           <div>
             <h3>ご案内</h3>
             <a href="${p("access/index.html")}">交通アクセス</a>
-            <a href="${p("contact/index.html")}">お問い合わせ</a>
             <a href="${p("privacy/index.html")}">プライバシーポリシー</a>
           </div>
         </div>

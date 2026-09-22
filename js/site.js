@@ -84,6 +84,7 @@
         <div class="nav-col">
           <h3>その他</h3>
           <a href="${p("privacy/index.html")}">プライバシーポリシー</a>
+          <a href="${p("bouhai/index.html")}">暴排情報</a>
         </div>
       </div>
     </nav>
@@ -120,6 +121,7 @@
           <div>
             <h3>その他</h3>
             <a href="${p("privacy/index.html")}">プライバシーポリシー</a>
+            <a href="${p("bouhai/index.html")}">暴排情報</a>
           </div>
         </div>
       </div>

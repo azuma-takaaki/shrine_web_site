@@ -676,9 +676,16 @@ body.nav-open .nav-overlay {
 
 .cal-table {
   width: 100%;
+  table-layout: fixed;
   border-collapse: collapse;
   text-align: center;
   font-size: 13px;
+}
+
+.cal-table th,
+.cal-table td {
+  width: 14.2857%;
+  vertical-align: middle;
 }
 
 .cal-table th {
@@ -688,7 +695,8 @@ body.nav-open .nav-overlay {
 }
 
 .cal-table td {
-  padding: 7px 0;
+  padding: 4px 0;
+  height: 36px;
 }
 
 .cal-table .sun {
@@ -704,6 +712,7 @@ body.nav-open .nav-overlay {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  line-height: 1;
 }
 
 .cal-table .inu {
@@ -714,6 +723,7 @@ body.nav-open .nav-overlay {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  line-height: 1;
 }
 
 .cal-legend {

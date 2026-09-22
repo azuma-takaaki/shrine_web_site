@@ -2,25 +2,29 @@
   const root = document.documentElement.dataset.root || ".";
   const p = (path) => `${root}/${path}`.replace(/\/{2,}/g, "/");
 
+  const loaderStartedAt = performance.now();
+  const MIN_LOADER_MS = 2000;
+  const LOADER_FADE_MS = 1000;
+
   const hideLoader = () => {
     document.documentElement.classList.add("is-hiding-loader");
     window.setTimeout(() => {
       document.documentElement.classList.add("is-ready");
       document.documentElement.classList.remove("is-hiding-loader");
-    }, 1000);
+    }, LOADER_FADE_MS);
   };
-  const startLoader = () => window.setTimeout(hideLoader, 1000);
-  if (document.readyState === "complete") startLoader();
-  else window.addEventListener("load", startLoader);
+
+  // 最低2秒表示。最大は画像などコンテンツの読み込み完了まで。
+  const finishLoader = () => {
+    const elapsed = performance.now() - loaderStartedAt;
+    window.setTimeout(hideLoader, Math.max(0, MIN_LOADER_MS - elapsed));
+  };
+
+  if (document.readyState === "complete") finishLoader();
+  else window.addEventListener("load", finishLoader, { once: true });
 
   const header = `
     <header class="site-header">
-      <div class="header-utility">
-        <a href="${p("omamori/index.html")}">お守り・縁起物・おみくじ</a>
-        <a href="${p("calendar/index.html")}">年間スケジュール</a>
-        <a href="${p("reservation/index.html")}">ご予約フォーム</a>
-        <a href="${p("access/index.html")}">交通アクセス</a>
-      </div>
       <div class="header-inner">
         <a class="logo" href="${p("index.html")}">
           <img src="${p("assets/crest.png")}" alt="社紋 亀甲に大">
@@ -33,8 +37,9 @@
           <a href="${p("deities/index.html")}">御祭神</a>
           <a href="${p("kitou/index.html")}">ご祈祷</a>
           <a href="${p("precinct/index.html")}">境内のご案内</a>
-          <a href="${p("izumoyashiki/index.html")}">出雲屋敷</a>
+          <a href="${p("omamori/index.html")}">お守り</a>
           <a href="${p("news/index.html")}">お知らせ</a>
+          <a href="${p("access/index.html")}">アクセス</a>
           <a href="${p("contact/index.html")}">お問い合わせ</a>
         </nav>
         <button class="menu-btn" type="button" aria-label="メニュー" aria-expanded="false">
@@ -112,7 +117,6 @@
       </div>
       <p class="copy">© Izumo Taisha Sanuki Branch</p>
     </footer>
-    <button class="to-top" type="button" aria-label="ページ上部へ">↑</button>
   `;
 
   document.body.insertAdjacentHTML("afterbegin", header);
@@ -129,9 +133,37 @@
       menuBtn.setAttribute("aria-expanded", "false");
     }
   });
-  document.querySelector(".to-top").addEventListener("click", () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  });
+
+  const revealTargets = document.querySelectorAll([
+    ".about-block",
+    ".intro-pair",
+    ".news-cal > *",
+    ".section-title",
+    ".guide-card",
+    ".page-hero h1",
+    ".content > *",
+    ".feature-card",
+    ".photo-block",
+    ".photo-pair",
+    ".photo-trio",
+    ".spot-block",
+    ".precinct-cta",
+  ].join(","));
+
+  if (revealTargets.length && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    revealTargets.forEach((el) => el.classList.add("reveal"));
+    const revealIo = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("is-inview");
+          revealIo.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.14, rootMargin: "0px 0px -6% 0px" }
+    );
+    revealTargets.forEach((el) => revealIo.observe(el));
+  }
 
   const calRoot = document.querySelector("[data-calendar]");
   if (calRoot) {

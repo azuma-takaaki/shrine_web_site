@@ -1,13 +1,20 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ja" data-root="..">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>ご予約 | 出雲大社讃岐分院</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Noto+Serif+JP:wght@500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/style.css">
+  <style id="boot-loader">
+html:not(.is-ready){overflow:hidden;height:100%;min-height:100dvh;background:#fff}
+html:not(.is-ready) body{opacity:0;background:#fff}
+html:not(.is-ready)::before{content:"";position:fixed;inset:0;width:100%;height:100%;min-height:100dvh;background:#fff;z-index:100000}
+html:not(.is-ready)::after{content:"";position:fixed;top:50%;left:50%;width:120px;height:120px;transform:translate(-50%,-50%);background:url("../assets/crest.png") center/contain no-repeat;z-index:100001;animation:lp-fade 1s infinite}
+@keyframes lp-fade{from{opacity:1}50%{opacity:.5}to{opacity:1}}
+</style>
+<link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
   <main>

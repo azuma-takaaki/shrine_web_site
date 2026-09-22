@@ -703,27 +703,24 @@ body.nav-open .nav-overlay {
   color: var(--red);
 }
 
-.cal-table .shakko {
-  background: var(--red);
-  color: #fff;
-  border-radius: 50%;
-  width: 28px;
-  height: 28px;
+.cal-table .cal-day {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
   line-height: 1;
+  vertical-align: middle;
+}
+
+.cal-table .shakko {
+  background: var(--red);
+  color: #fff;
 }
 
 .cal-table .inu {
   box-shadow: inset 0 0 0 1.5px #8a6a3b;
-  border-radius: 50%;
-  width: 28px;
-  height: 28px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  line-height: 1;
 }
 
 .cal-legend {

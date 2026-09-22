@@ -190,7 +190,8 @@
       for (let d = 1; d <= days; d += 1) {
         const dow = (first + d - 1) % 7;
         const marked = d === 15 || d === 30;
-        const inner = marked ? `<span class="shakko">${d}</span>` : String(d);
+        const cls = marked ? "cal-day shakko" : "cal-day";
+        const inner = `<span class="${cls}">${d}</span>`;
         html += `<td class="${dow === 0 ? "sun" : ""}">${inner}</td>`;
         if (dow === 6) html += "</tr><tr>";
       }

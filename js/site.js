@@ -68,6 +68,7 @@
           <a href="${p("deities/index.html")}">御祭神</a>
           <a href="${p("about/index.html")}">分院について</a>
           <a href="${p("precinct/index.html")}">境内のご案内</a>
+          <a href="${p("access/index.html")}">交通アクセス</a>
         </div>
         <div class="nav-col">
           <h3>ご祈祷・授与</h3>
@@ -82,7 +83,6 @@
         </div>
         <div class="nav-col">
           <h3>その他</h3>
-          <a href="${p("access/index.html")}">交通アクセス</a>
           <a href="${p("privacy/index.html")}">プライバシーポリシー</a>
         </div>
       </div>
@@ -104,6 +104,7 @@
             <a href="${p("deities/index.html")}">御祭神</a>
             <a href="${p("about/index.html")}">分院について</a>
             <a href="${p("precinct/index.html")}">境内のご案内</a>
+            <a href="${p("access/index.html")}">交通アクセス</a>
           </div>
           <div>
             <h3>ご祈祷・授与</h3>
@@ -118,7 +119,6 @@
           </div>
           <div>
             <h3>その他</h3>
-            <a href="${p("access/index.html")}">交通アクセス</a>
             <a href="${p("privacy/index.html")}">プライバシーポリシー</a>
           </div>
         </div>

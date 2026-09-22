@@ -59,7 +59,6 @@
         <div class="nav-col">
           <h3>ご祈祷・授与</h3>
           <a href="${p("kitou/index.html")}">ご祈祷</a>
-          <a href="${p("reservation/index.html")}">ご予約フォーム</a>
           <a href="${p("izumoyashiki/index.html")}">出雲屋敷</a>
           <a href="${p("omamori/index.html")}">お守り・縁起物・おみくじ</a>
         </div>
@@ -98,7 +97,6 @@
           <div>
             <h3>ご祈祷・授与</h3>
             <a href="${p("kitou/index.html")}">ご祈祷</a>
-            <a href="${p("reservation/index.html")}">ご予約フォーム</a>
             <a href="${p("izumoyashiki/index.html")}">出雲屋敷</a>
             <a href="${p("omamori/index.html")}">お守り・縁起物・おみくじ</a>
           </div>
@@ -205,32 +203,4 @@
     });
     render();
   }
-
-  const typeMap = {
-    enmusubi: "縁むすび",
-    jichinsai: "地鎮祭",
-    wedding: "神前結婚式",
-    toshikae: "年変年戻し",
-    iebarai: "家祓い",
-    izumoyashiki: "出雲屋敷",
-  };
-  const typeSelect = document.querySelector("select[name='type']");
-  if (typeSelect) {
-    const type = new URLSearchParams(location.search).get("type");
-    if (type && typeMap[type]) {
-      typeSelect.value = typeMap[type];
-      const banner = document.querySelector("[data-prefill-note]");
-      if (banner) {
-        banner.hidden = false;
-        banner.textContent = `「${typeMap[type]}」で申し込み内容を入れています。`;
-      }
-    }
-  }
-
-  document.querySelectorAll("form[data-fake-submit]").forEach((form) => {
-    form.addEventListener("submit", (event) => {
-      event.preventDefault();
-      alert("デモのため送信は行われません。受け入れ態勢が整い次第、本番の予約につなげます。");
-    });
-  });
 })();

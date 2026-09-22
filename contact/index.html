@@ -20,25 +20,13 @@ html:not(.is-ready)::after{content:"";position:fixed;top:50%;left:50%;width:120p
   <main>
     <div class="page-hero"><h1>お問い合わせ</h1></div>
     <article class="content">
-      <p class="lead">ご不明な点は、お電話またはこちらのフォームからご連絡ください。TEL：0875-62-2008（9:00－17:00）</p>
-      <form class="form" data-fake-submit>
-        <label><div><span>必須</span>お名前</div><input required name="name"></label>
-        <label><div><span>必須</span>メールアドレス</div><input required type="email" name="email"></label>
-        <label><div><span>必須</span>お電話番号</div><input required name="tel"></label>
-        <label><div><span>必須</span>カテゴリー</div>
-          <select required name="category">
-            <option value="">—以下から選択してください—</option>
-            <option>ご祈祷について</option>
-            <option>地鎮祭について</option>
-            <option>神前結婚式について</option>
-            <option>出雲屋敷について</option>
-            <option>お守りについて</option>
-            <option>その他</option>
-          </select>
-        </label>
-        <label><div><span>必須</span>お問い合わせ内容</div><textarea required name="message"></textarea></label>
-        <button class="btn btn-red" type="submit">送信する</button>
-      </form>
+      <p class="lead">ご不明な点は、お電話にてご連絡ください。</p>
+      <table class="info-table">
+        <tr><th>TEL</th><td><a href="tel:0875622008">0875-62-2008</a></td></tr>
+        <tr><th>受付時間</th><td>9:00－17:00</td></tr>
+        <tr><th>所在地</th><td>〒769-1501 香川県三豊市豊中町比地大3142</td></tr>
+      </table>
+      <p class="center"><a class="btn btn-red" href="tel:0875622008">電話する</a></p>
     </article>
   </main>
   <script src="../js/site.js"></script>

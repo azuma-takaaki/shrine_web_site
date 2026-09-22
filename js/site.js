@@ -2,6 +2,20 @@
   const root = document.documentElement.dataset.root || ".";
   const p = (path) => `${root}/${path}`.replace(/\/{2,}/g, "/");
 
+  if (!document.querySelector('link[rel="icon"]')) {
+    const icon = document.createElement("link");
+    icon.rel = "icon";
+    icon.type = "image/png";
+    icon.href = p("assets/favicon-32.png");
+    document.head.appendChild(icon);
+  }
+  if (!document.querySelector('link[rel="apple-touch-icon"]')) {
+    const apple = document.createElement("link");
+    apple.rel = "apple-touch-icon";
+    apple.href = p("assets/apple-touch-icon.png");
+    document.head.appendChild(apple);
+  }
+
   const loaderStartedAt = performance.now();
   const MIN_LOADER_MS = 2000;
   const LOADER_FADE_MS = 1000;
@@ -11,6 +25,7 @@
     window.setTimeout(() => {
       document.documentElement.classList.add("is-ready");
       document.documentElement.classList.remove("is-hiding-loader");
+      window.dispatchEvent(new Event("site:ready"));
     }, LOADER_FADE_MS);
   };
 
@@ -49,10 +64,9 @@
     <nav class="nav-overlay" aria-label="サイトメニュー">
       <div class="nav-grid">
         <div class="nav-col">
-          <h3>当おやしろ</h3>
+          <h3>ご案内</h3>
           <a href="${p("deities/index.html")}">御祭神</a>
           <a href="${p("about/index.html")}">分院について</a>
-          <a href="${p("izumo/index.html")}">出雲大社について</a>
           <a href="${p("precinct/index.html")}">境内のご案内</a>
         </div>
         <div class="nav-col">
@@ -67,7 +81,7 @@
           <a href="${p("calendar/index.html")}">年間スケジュール</a>
         </div>
         <div class="nav-col">
-          <h3>ご案内</h3>
+          <h3>その他</h3>
           <a href="${p("access/index.html")}">交通アクセス</a>
           <a href="${p("privacy/index.html")}">プライバシーポリシー</a>
         </div>
@@ -86,11 +100,10 @@
         </div>
         <div class="footer-nav">
           <div>
-            <h3>当おやしろ</h3>
+            <h3>ご案内</h3>
             <a href="${p("deities/index.html")}">御祭神</a>
             <a href="${p("about/index.html")}">分院について</a>
             <a href="${p("precinct/index.html")}">境内のご案内</a>
-            <a href="${p("izumo/index.html")}">出雲大社について</a>
           </div>
           <div>
             <h3>ご祈祷・授与</h3>
@@ -104,7 +117,7 @@
             <a href="${p("calendar/index.html")}">年間スケジュール</a>
           </div>
           <div>
-            <h3>ご案内</h3>
+            <h3>その他</h3>
             <a href="${p("access/index.html")}">交通アクセス</a>
             <a href="${p("privacy/index.html")}">プライバシーポリシー</a>
           </div>
@@ -199,5 +212,48 @@
       render();
     });
     render();
+  }
+
+  const heroRoot = document.querySelector("[data-hero-slides]");
+  if (heroRoot) {
+    const slides = Array.from(heroRoot.querySelectorAll(".hero-slide"));
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (slides.length > 1 && !reduceMotion) {
+      let index = Math.max(0, slides.findIndex((slide) => slide.classList.contains("is-active")));
+      const INTERVAL_MS = 6000;
+      window.setInterval(() => {
+        const prev = slides[index];
+        const frozen = getComputedStyle(prev).transform;
+        prev.style.animation = "none";
+        if (frozen && frozen !== "none") prev.style.transform = frozen;
+        prev.classList.remove("is-active");
+
+        index = (index + 1) % slides.length;
+        const next = slides[index];
+        next.style.removeProperty("transform");
+        next.style.animation = "none";
+        void next.offsetWidth;
+        next.style.removeProperty("animation");
+        next.classList.add("is-active");
+
+        window.setTimeout(() => {
+          if (!prev.classList.contains("is-active")) {
+            prev.style.removeProperty("transform");
+            prev.style.removeProperty("animation");
+          }
+        }, 1500);
+      }, INTERVAL_MS);
+    }
+  }
+  const notice = document.querySelector("[data-notice]");
+  if (notice) {
+    const openNotice = () => {
+      notice.hidden = false;
+      requestAnimationFrame(() => notice.classList.add("is-open"));
+    };
+
+    const showAfterReady = () => window.setTimeout(openNotice, 1100);
+    if (document.documentElement.classList.contains("is-ready")) showAfterReady();
+    else window.addEventListener("site:ready", showAfterReady, { once: true });
   }
 })();

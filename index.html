@@ -15,24 +15,31 @@ html:not(.is-ready)::after{content:"";position:fixed;top:50%;left:50%;width:120p
 @keyframes lp-fade{from{opacity:1}50%{opacity:.5}to{opacity:1}}
 </style>
 <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/png" href="./assets/favicon-32.png">
+  <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png">
 </head>
 <body>
   <main>
     <section class="hero">
+      <div class="hero-slides" data-hero-slides aria-hidden="true">
+        <div class="hero-slide is-active" data-motion="zoom-in" style="background-image:url('assets/photos/img-7861.jpg')"></div>
+        <div class="hero-slide" data-motion="pan-right" style="background-image:url('assets/photos/img-7867.jpg')"></div>
+        <div class="hero-slide hero-slide--komainu" data-motion="zoom-out" style="background-image:url('assets/photos/img-7864.jpg')"></div>
+        <div class="hero-slide" data-motion="zoom-in" style="background-image:url('assets/photos/gate.jpg')"></div>
+      </div>
       <div class="hero-copy">
-        <p>うどんの国で、<br>出雲のご縁を結ぶ</p>
+        <p>うどんの国で、<br>出雲のご縁を結ぶ。</p>
       </div>
-      <div class="hero-actions">
-        <a class="btn" href="precinct/index.html">境内のご案内</a>
-        <a class="btn" href="kitou/index.html">ご祈祷</a>
-      </div>
+      <a class="hero-notice-btn" href="news/2026-09-15/index.html" data-notice data-notice-id="2026-09-15" hidden>
+        月次祭を斎行いたしました
+      </a>
     </section>
 
     <section class="about-block">
       <div class="about-photo"></div>
       <div class="about-text">
         <p class="intro-kicker">分院について</p>
-        <h2>讃岐の地で、<br>出雲の大きなご縁を結ぶ</h2>
+        <h2>讃岐の地で、<br><span>出雲の大きなご縁を結ぶ。</span></h2>
         <p>出雲大社讃岐分院は、明治12年、この三豊の地に社殿を建立いたしました。縁結びと福の神・大国主大神（だいこくさま）をお祀りするおやしろです。うどんを食べたついで、観光のついでに、ふらりと寄っていただけます。</p>
         <a class="btn btn-red" href="about/index.html">分院について</a>
       </div>
